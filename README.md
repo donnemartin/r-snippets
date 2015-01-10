@@ -1,6 +1,6 @@
 # r-snippets
 
-Various R snippets
+Various R snippets for reading, subsetting, summarizing, reshaping, merging, and cleaning data
 
 ##License
 
