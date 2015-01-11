@@ -18,9 +18,9 @@ ReadFromUrlToDataTable <- function(fileDataUrl,
   #   An integer vector containing the number of million dollar homes in Idaho
 
   library(data.table)
-  source("download_data_from_url.r")
+  source("reading_data/utilities.R")
 
-  DownloadDataFromUrl(fileDataUrl, fileDataDest, downloadData)
+  fileDataDest <- DownloadDataFromUrl(fileDataUrl, fileDataDest, downloadData)
 
   dt <- fread(fileDataDest)
 
@@ -29,7 +29,7 @@ ReadFromUrlToDataTable <- function(fileDataUrl,
   # From the codebook:
   # PWGTP15 Person's Weight replicate 15
   # 0001..9999 .Integer weight of person
-  meanPwgtp15 <- sapply(split(DT$pwgtp15, DT$SEX), mean)
+  meanPwgtp15 <- sapply(split(dt$pwgtp15, dt$SEX), mean)
   return(meanPwgtp15)
 }
 
@@ -40,9 +40,7 @@ ReadFromUrlToDataTable <- function(fileDataUrl,
 fileDataUrl <- paste("https://d396qusza40orc.cloudfront.net/",
                      "getdata%2Fdata%2Fss06pid.csv",
                      sep="")
-fileDataDest <- paste(dataDir,
-                      "getdata-data-restaurants.xml",
-                      sep="")
+fileDataDest <- "getdata-data-restaurants.xml"
 ReadFromUrlToDataTable(fileDataUrl, fileDataDest)
 # 1        2
 # 99.80667 96.66534

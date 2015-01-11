@@ -15,9 +15,9 @@ ReadCsvFromUrl <- function(fileDataUrl, fileDataDest, downloadData=TRUE) {
   # Returns:
   #   An integer vector containing the number of million dollar homes in Idaho
 
-  source("download_data_from_url.r")
+  source("reading_data/utilities.R")
 
-  DownloadDataFromUrl(fileDataUrl, fileDataDest, downloadData)
+  fileDataDest <- DownloadDataFromUrl(fileDataUrl, fileDataDest, downloadData)
 
   dfHousing <- read.csv(fileDataDest)
 
@@ -41,8 +41,6 @@ ReadCsvFromUrl <- function(fileDataUrl, fileDataDest, downloadData=TRUE) {
 fileDataUrl <- paste("https://d396qusza40orc.cloudfront.net/",
                      "getdata%2Fdata%2Fss06hid.csv",
                      sep="")
-fileDataDest <- paste(dataDir,
-                      "getdata-data-ss06hid.csv",
-                      sep="")
+fileDataDest <- "getdata-data-ss06hid.csv"
 ReadCsvFromUrl(fileDataUrl, fileDataDest)
 # [1] 53

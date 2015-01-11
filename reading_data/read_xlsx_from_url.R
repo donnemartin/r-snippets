@@ -17,9 +17,9 @@ ReadXlsxFromUrl <- function(fileDataUrl, fileDataDest, downloadData=TRUE) {
   #   A data frame containing the contractors city and zip
 
   library(xlsx)
-  source("download_data_from_url.r")
+  source("reading_data/utilities.R")
 
-  DownloadDataFromUrl(fileDataUrl, fileDataDest, downloadData)
+  fileDataDest <- DownloadDataFromUrl(fileDataUrl, fileDataDest, downloadData)
 
   # Read only the contractor address info cells
   contractorTableRowRange <- 18:23
@@ -39,9 +39,7 @@ ReadXlsxFromUrl <- function(fileDataUrl, fileDataDest, downloadData=TRUE) {
 fileDataUrl <- paste("https://d396qusza40orc.cloudfront.net/",
                      "getdata%2Fdata%2FDATA.gov_NGAP.xlsx",
                      sep="")
-fileDataDest <- paste(dataDir,
-                      "getdata-data-DATA.gov_NGAP.xlsx",
-                      sep="")
+fileDataDest <- "getdata-data-DATA.gov_NGAP.xlsx"
 ReadXlsxFromUrl(fileDataUrl, fileDataDest)
 #        City   Zip
 # 1     Tulsa 74136

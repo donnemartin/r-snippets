@@ -17,9 +17,9 @@ ReadXmlFromUrl <- function(fileDataUrl, fileDataDest, zip, downloadData=TRUE) {
   #   An integer vector containing the number of restaurants in the given zip
 
   library(XML)
-  source("download_data_from_url.r")
+  source("reading_data/utilities.R")
 
-  DownloadDataFromUrl(fileDataUrl, fileDataDest, downloadData)
+  fileDataDest <- DownloadDataFromUrl(fileDataUrl, fileDataDest, downloadData)
 
   # Can also download from the URL directly with xmlTreeParse
   doc <- xmlTreeParse(fileDataDest, useInternal=TRUE)
@@ -42,8 +42,6 @@ ReadXmlFromUrl <- function(fileDataUrl, fileDataDest, zip, downloadData=TRUE) {
 fileDataUrl <- paste("https://d396qusza40orc.cloudfront.net/",
                      "getdata%2Fdata%2Frestaurants.xml",
                      sep="")
-fileDataDest <- paste(dataDir,
-                      "getdata-data-restaurants.xml",
-                      sep="")
+fileDataDest <- paste("getdata-data-restaurants.xml")
 ReadXmlFromUrl(fileDataUrl, fileDataDest, 21217)
 # [1] 32
