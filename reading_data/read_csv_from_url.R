@@ -33,14 +33,3 @@ ReadCsvFromUrl <- function(fileDataUrl, fileDataDest, downloadData=TRUE) {
   kMillionDollarValue <- 24
   numMillionDollarHomes <- nrow(subset(dfHousing, VAL == kMillionDollarValue))
 }
-
-# Tests
-# The American Community Survey distributes downloadable data about United
-# States communities. Download the 2006 microdata survey about housing for the
-# state of Idaho
-fileDataUrl <- paste("https://d396qusza40orc.cloudfront.net/",
-                     "getdata%2Fdata%2Fss06hid.csv",
-                     sep="")
-fileDataDest <- "getdata-data-ss06hid.csv"
-ReadCsvFromUrl(fileDataUrl, fileDataDest)
-# [1] 53

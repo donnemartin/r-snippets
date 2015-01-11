@@ -1,9 +1,10 @@
 context("Reading Data")
 
-source("../../reading_data/utilities.R")
+setwd("../../")
+source("reading_data/utilities.R")
 
 getDataDir <- function() {
-  return("../../data")
+  return("data/")
 }
 
 test_that("data directory is created", {
@@ -11,7 +12,7 @@ test_that("data directory is created", {
   expect_true(file.exists(getDataDir()))
 })
 
-test_that("data downloaded from URL", {
+test_that("data is downloaded from URL", {
   fileDataUrl <- paste("https://d396qusza40orc.cloudfront.net/",
                        "getdata%2Fdata%2Frestaurants.xml",
                        sep="")
@@ -20,4 +21,17 @@ test_that("data downloaded from URL", {
                                       fileDataDest,
                                       downloadData=TRUE)
   expect_true(file.exists(fileDataDest))
+})
+
+test_that("data is read from csv", {
+  # Tests
+  # The American Community Survey distributes downloadable data about United
+  # States communities. Download the 2006 microdata survey about housing for the
+  # state of Idaho
+  fileDataUrl <- paste("https://d396qusza40orc.cloudfront.net/",
+                       "getdata%2Fdata%2Fss06hid.csv",
+                       sep="")
+  fileDataDest <- "getdata-data-ss06hid.csv"
+  result <- ReadCsvFromUrl(fileDataUrl, fileDataDest)
+  expect_equal(result[1], 53)
 })
