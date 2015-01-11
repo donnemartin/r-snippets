@@ -1,5 +1,4 @@
 DownloadDataFromUrl <- function(fileDataUrl, fileDataDest, downloadData=TRUE) {
-  # Creates the data directory if it doesn't already exist.
   # Downloads the specified file from the given url and saves it to the
   # given file destination
   #
@@ -11,15 +10,30 @@ DownloadDataFromUrl <- function(fileDataUrl, fileDataDest, downloadData=TRUE) {
   #     downloaded, use false if you have previously downloaded the data
   #
   # Returns:
-  #   None
+  #   The file data destination path in the data directory
 
-  dataDir <- "data"
+  dataDir <- "data/"
+  SetupDataDir(dataDir)
+
+  # Download the contents of the url to our data directory and return the
+  # new file path
+  if (downloadData) {
+    fileDataDest <- paste(dataDir, fileDataDest, sep="")
+    download.file(fileDataUrl, destfile=fileDataDest, method="curl")
+    return(fileDataDest)
+  }
+}
+
+SetupDataDir <- function(dataDir) {
+  # Creates the data directory if it doesn't already exist.
+  #
+  # Args:
+  #   dataDir: the data directory name
+  #
+  # Returns:
+  #   None
 
   if (!file.exists(dataDir)) {
     dir.create(dataDir)
-  }
-
-  if (downloadData) {
-    download.file(fileDataUrl, destfile=fileDataDest, method="curl")
   }
 }
