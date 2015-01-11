@@ -1,6 +1,35 @@
 # r-snippets
 
-Various R snippets for reading, subsetting, summarizing, reshaping, merging, and cleaning data
+Various R snippets for reading, subsetting, summarizing, reshaping, merging, and cleaning data.
+
+Snippets operate on real world data and are covered by test_that unit tests.
+
+## Reading Data
+
+* Read CSV from URL
+* Read from URL to Data Table
+* Read XLSX from URL
+* Read XML from URL with XPATH
+
+## Subsetting Data
+
+Coming soon...
+
+## Summarizing Data
+
+Coming soon...
+
+## Reshaping Data
+
+Coming soon...
+
+## Merging Data
+
+Coming soon...
+
+## Cleaning Data
+
+Coming soon...
 
 ##License
 
