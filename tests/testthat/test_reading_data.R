@@ -26,7 +26,7 @@ DownloadData <- function() {
   #   FALSE: Do not download the data files, use the already existing data file
   #     if it exists.  Note: Does not check whether existing data file already
   #     exists.
-  return(FALSE)
+  return(TRUE)
 }
 
 test_that("data directory is created", {
@@ -63,4 +63,10 @@ test_that("data on gas contractor city and zip is read from xlsx", {
   colnames(baseline) <- c("City", "Zip")
 
   expect_equal(result, baseline)
+})
+
+test_that("data on number of baltimore restaurants by zip is read from xml", {
+  result <- NumBaltimoreRestaurantsInZip(21217, DownloadData())
+  baseline <- 32
+  expect_equal(result[1], baseline)
 })

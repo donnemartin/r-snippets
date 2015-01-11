@@ -1,4 +1,4 @@
-ReadXmlFromUrl <- function(fileDataUrl, fileDataDest, zip, downloadData=TRUE) {
+NumBaltimoreRestaurantsInZip <- function(zip, downloadData=TRUE) {
   # Downloads an xml file from the given url and saves it to the given
   # destination.  Reads the downloaded file with xmlTreeParse and uses XPATH
   # to filter values.
@@ -6,9 +6,6 @@ ReadXmlFromUrl <- function(fileDataUrl, fileDataDest, zip, downloadData=TRUE) {
   # Returns the number of Baltimore restaurants in the given zip.
   #
   # Args:
-  #   fileDataUrl: the url containing the data file
-  #   fileDataDest: the file name that will contain the data from the url
-  #     file will be placed in the data directory
   #   zip: the Baltimore zip code to search for restaurants
   #   downloadData: determines whether the data should be
   #     downloaded, use false if you have previously downloaded the data
@@ -19,6 +16,10 @@ ReadXmlFromUrl <- function(fileDataUrl, fileDataDest, zip, downloadData=TRUE) {
   library(XML)
   source("reading_data/utilities.R")
 
+  fileDataUrl <- paste("https://d396qusza40orc.cloudfront.net/",
+                       "getdata%2Fdata%2Frestaurants.xml",
+                       sep="")
+  fileDataDest <- paste("getdata-data-restaurants.xml")
   fileDataDest <- DownloadDataFromUrl(fileDataUrl, fileDataDest, downloadData)
 
   # Can also download from the URL directly with xmlTreeParse
@@ -39,9 +40,5 @@ ReadXmlFromUrl <- function(fileDataUrl, fileDataDest, zip, downloadData=TRUE) {
 
 # Tests
 # Read the XML data on Baltimore restaurants:
-fileDataUrl <- paste("https://d396qusza40orc.cloudfront.net/",
-                     "getdata%2Fdata%2Frestaurants.xml",
-                     sep="")
-fileDataDest <- paste("getdata-data-restaurants.xml")
-ReadXmlFromUrl(fileDataUrl, fileDataDest, 21217)
+
 # [1] 32
