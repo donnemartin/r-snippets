@@ -15,13 +15,13 @@ DownloadDataFromUrl <- function(fileDataUrl, fileDataDest, downloadData=TRUE) {
   dataDir <- "data/"
   SetupDataDir(dataDir)
 
-  # Download the contents of the url to our data directory and return the
-  # new file path
+  fileDataDest <- paste(dataDir, fileDataDest, sep="")
+
   if (downloadData) {
-    fileDataDest <- paste(dataDir, fileDataDest, sep="")
     download.file(fileDataUrl, destfile=fileDataDest, method="curl")
-    return(fileDataDest)
   }
+
+  return(fileDataDest)
 }
 
 SetupDataDir <- function(dataDir) {
