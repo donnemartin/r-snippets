@@ -26,7 +26,7 @@ DownloadData <- function() {
   #   FALSE: Do not download the data files, use the already existing data file
   #     if it exists.  Note: Does not check whether existing data file already
   #     exists.
-  return(TRUE)
+  return(FALSE)
 }
 
 test_that("data directory is created", {
@@ -48,4 +48,14 @@ test_that("data is downloaded from URL", {
 test_that("data on million dolloar homes is read from csv", {
   result <- NumMillionDollarHomesIdaho(DownloadData())
   expect_equal(result[1], 53)
+})
+
+test_that("data on gas contractor city and zip read from xlsx", {
+  result <- ListGasContractorsCityZip(DownloadData())
+
+  City <- c("Tulsa", "Atlanta", "Tulsa", "Denver", "Littleton")
+  Zip <- c(74136, 30329, 74136, 80203, 80120)
+  baseline <- data.frame(City, Zip)
+
+  expect_equal(result, baseline)
 })

@@ -1,4 +1,4 @@
-ReadXlsxFromUrl <- function(fileDataUrl, fileDataDest, downloadData=TRUE) {
+ListGasContractorsCityZip <- function(downloadData) {
   # Downloads an xlsx file from the given url and saves it to the given
   # destination.  Reads selected rows and columns from the downloaded file
   # to a data frame.
@@ -19,31 +19,23 @@ ReadXlsxFromUrl <- function(fileDataUrl, fileDataDest, downloadData=TRUE) {
   library(xlsx)
   source("reading_data/utilities.R")
 
-  fileDataDest <- DownloadDataFromUrl(fileDataUrl, fileDataDest, downloadData)
+  # Original data source:
+  # http://catalog.data.gov/dataset/natural-gas-acquisition-program
+  fileDataUrl <- paste("https://d396qusza40orc.cloudfront.net/",
+                       "getdata%2Fdata%2FDATA.gov_NGAP.xlsx",
+                       sep="")
+  fileDataDest <- "getdata-data-DATA.gov_NGAP.xlsx"
 
   # Read only the contractor address info cells
+  sheetIndex <- 1
   contractorTableRowRange <- 18:23
-  cityZipRange <- 6:7
+  cityZipColRange <- 6:7
 
-  dfGas <- read.xlsx(fileDataDest,
-                     sheetIndex=1,
-                     rowIndex=contractorTableRowRange,
-                     colIndex=cityZipRange)
+  fileDataDest <- DownloadDataFromUrl(fileDataUrl, fileDataDest, downloadData)
 
-  return(dfGas)
+  dfCityZip <- read.xlsx(fileDataDest,
+                         sheetIndex=sheetIndex,
+                         rowIndex=contractorTableRowRange,
+                         colIndex=cityZipColRange)
+  return(dfCityZip)
 }
-
-# Tests
-# Original data source:
-# http://catalog.data.gov/dataset/natural-gas-acquisition-program
-fileDataUrl <- paste("https://d396qusza40orc.cloudfront.net/",
-                     "getdata%2Fdata%2FDATA.gov_NGAP.xlsx",
-                     sep="")
-fileDataDest <- "getdata-data-DATA.gov_NGAP.xlsx"
-ReadXlsxFromUrl(fileDataUrl, fileDataDest)
-#        City   Zip
-# 1     Tulsa 74136
-# 2   Atlanta 30329
-# 3     Tulsa 74136
-# 4    Denver 80203
-# 5 Littleton 80120
