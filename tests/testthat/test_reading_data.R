@@ -45,17 +45,7 @@ test_that("data is downloaded from URL", {
   expect_true(file.exists(fileDataDest))
 })
 
-test_that("data is read from csv", {
-  # Tests
-  # The American Community Survey distributes downloadable data about United
-  # States communities. Download the 2006 microdata survey about housing for the
-  # state of Idaho
-  fileDataUrl <- paste("https://d396qusza40orc.cloudfront.net/",
-                       "getdata%2Fdata%2Fss06hid.csv",
-                       sep="")
-  fileDataDest <- "getdata-data-ss06hid.csv"
-  result <- ReadCsvFromUrl(fileDataUrl,
-                           fileDataDest,
-                           downloadData=DownloadData())
+test_that("data on million dolloar homes is read from csv", {
+  result <- NumMillionDollarHomesIdaho(DownloadData())
   expect_equal(result[1], 53)
 })

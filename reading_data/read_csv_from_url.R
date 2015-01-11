@@ -18,8 +18,21 @@ ReadCsvFromUrl <- function(fileDataUrl, fileDataDest, downloadData=TRUE) {
   source("reading_data/utilities.R")
 
   fileDataDest <- DownloadDataFromUrl(fileDataUrl, fileDataDest, downloadData)
-
   dfHousing <- read.csv(fileDataDest)
+  return (dfHousing)
+}
+
+NumMillionDollarHomesIdaho <- function(downloadData) {
+  # The American Community Survey distributes downloadable data about United
+  # States communities. Download the 2006 microdata survey about housing for the
+  # state of Idaho
+  fileDataUrl <- paste("https://d396qusza40orc.cloudfront.net/",
+                       "getdata%2Fdata%2Fss06hid.csv",
+                       sep="")
+  fileDataDest <- "getdata-data-ss06hid.csv"
+  dfHousing <- ReadCsvFromUrl(fileDataUrl,
+                              fileDataDest,
+                              downloadData=downloadData)
 
   # Determine how many homes are worth a million dollars or more
   # From the codebook located at:
@@ -30,6 +43,8 @@ ReadCsvFromUrl <- function(fileDataUrl, fileDataDest, downloadData=TRUE) {
   # ...
   # 23 .$750000 - $999999
   # 24 .$1000000+
-  kMillionDollarValue <- 24
-  numMillionDollarHomes <- nrow(subset(dfHousing, VAL == kMillionDollarValue))
+  kMillionDollarIndicator <- 24
+  numMillionDollarHomes <- nrow(subset(dfHousing,
+                                       VAL == kMillionDollarIndicator))
+  return(numMillionDollarHomes)
 }
