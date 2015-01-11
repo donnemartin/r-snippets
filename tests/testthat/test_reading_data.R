@@ -45,17 +45,22 @@ test_that("data is downloaded from URL", {
   expect_true(file.exists(fileDataDest))
 })
 
-test_that("data on million dolloar homes is read from csv", {
+test_that("data on number of million dollar homes is read from csv", {
   result <- NumMillionDollarHomesIdaho(DownloadData())
-  expect_equal(result[1], 53)
+  baseline <- 53
+  expect_equal(result[1], baseline)
 })
 
-test_that("data on gas contractor city and zip read from xlsx", {
+test_that("data on gas contractor city and zip is read from xlsx", {
   result <- ListGasContractorsCityZip(DownloadData())
 
-  City <- c("Tulsa", "Atlanta", "Tulsa", "Denver", "Littleton")
-  Zip <- c(74136, 30329, 74136, 80203, 80120)
-  baseline <- data.frame(City, Zip)
+  # Generate our baseline data frame to match against our result
+  city <- c("Tulsa", "Atlanta", "Tulsa", "Denver", "Littleton")
+  zip <- c(74136, 30329, 74136, 80203, 80120)
+  baseline <- data.frame(city, zip)
+
+  # Match up the column names
+  colnames(baseline) <- c("City", "Zip")
 
   expect_equal(result, baseline)
 })

@@ -6,9 +6,6 @@ NumMillionDollarHomesIdaho <- function(downloadData) {
   # The American Community Survey's 2006 microdata on Idaho.
   #
   # Args:
-  #   fileDataUrl: the url containing the data file
-  #   fileDataDest: the file name that will contain the data from the url
-  #     file will be placed in the data directory
   #   downloadData: determines whether the data (and codebook) should be
   #     downloaded, use false if you have previously downloaded the data
   #
@@ -25,6 +22,7 @@ NumMillionDollarHomesIdaho <- function(downloadData) {
                        sep="")
   fileDataDest <- "getdata-data-ss06hid.csv"
   fileDataDest <- DownloadDataFromUrl(fileDataUrl, fileDataDest, downloadData)
+
   dfHousing <- read.csv(fileDataDest)
 
   # Determine how many homes are worth a million dollars or more

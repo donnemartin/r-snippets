@@ -7,9 +7,6 @@ ListGasContractorsCityZip <- function(downloadData) {
   # Aquisition Program.
   #
   # Args:
-  #   fileDataUrl: the url containing the data file
-  #   fileDataDest: the file name that will contain the data from the url
-  #     file will be placed in the data directory
   #   downloadData: determines whether the data should be
   #     downloaded, use false if you have previously downloaded the data
   #
@@ -25,13 +22,12 @@ ListGasContractorsCityZip <- function(downloadData) {
                        "getdata%2Fdata%2FDATA.gov_NGAP.xlsx",
                        sep="")
   fileDataDest <- "getdata-data-DATA.gov_NGAP.xlsx"
+  fileDataDest <- DownloadDataFromUrl(fileDataUrl, fileDataDest, downloadData)
 
   # Read only the contractor address info cells
   sheetIndex <- 1
   contractorTableRowRange <- 18:23
   cityZipColRange <- 6:7
-
-  fileDataDest <- DownloadDataFromUrl(fileDataUrl, fileDataDest, downloadData)
 
   dfCityZip <- read.xlsx(fileDataDest,
                          sheetIndex=sheetIndex,
