@@ -1,0 +1,15 @@
+Package: rsnippets
+Version: 0.1
+Date: 2015-01-10
+Title: R Snippets
+Authors@R: c(person("Donne", "Martin", role = c("aut", "cre"),
+             email = "donne.martin@gmail.com")
+Author: Donne Martin
+Maintainer: Donne Martin <donne.martin@gmail.com>
+Depends: R (>= 1.8.0)
+Suggests: testthat
+Description: Various R snippets for reading, subsetting, summarizing, reshaping,
+    merging, and cleaning data.
+License: Apache 2
+URL: https://github.com/donnemartin/r-snippets
+BugReports: https://github.com/donnemartin/r-snippets
