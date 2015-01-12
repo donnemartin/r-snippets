@@ -35,14 +35,19 @@ test_that("data directory is created", {
 })
 
 test_that("data is downloaded from URL", {
-  fileDataUrl <- paste("https://d396qusza40orc.cloudfront.net/",
-                       "getdata%2Fdata%2Frestaurants.xml",
-                       sep="")
-  fileDataDest <- "getdata-data-restaurants.xml"
-  fileDataDest <- DownloadDataFromUrl(fileDataUrl,
-                                      fileDataDest,
-                                      downloadData=DownloadData())
-  expect_true(file.exists(fileDataDest))
+  if (DownloadData()) {
+    fileDataUrl <- paste("https://raw.githubusercontent.com/donnemartin/",
+                         "donnemartin.github.io/master/images/profile.png",
+                         sep="")
+    fileDataDest <- "profile.png"
+    fileDataDest <- DownloadDataFromUrl(fileDataUrl,
+                                        fileDataDest,
+                                        downloadData=DownloadData())
+    expect_true(file.exists(fileDataDest))
+  }
+  else {
+    skip("skipped downloading data to speed up tests")
+  }
 })
 
 test_that("data on number of million dollar homes is read from csv", {
