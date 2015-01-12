@@ -1,6 +1,4 @@
-ReadFromUrlToDataTable <- function(fileDataUrl,
-                                   fileDataDest,
-                                   downloadData=TRUE) {
+MeanPersonWeightReplicate15Idaho <- function(downloadData=TRUE) {
   # Downloads a file from the given url and reads the file to a data table.
   #
   # Returns the mean person weight replicate 15 segmented by sex from the
@@ -8,9 +6,6 @@ ReadFromUrlToDataTable <- function(fileDataUrl,
   # Idaho
   #
   # Args:
-  #   fileDataUrl: the url containing the data file
-  #   fileDataDest: the file name that will contain the data from the url
-  #     file will be placed in the data directory
   #   downloadData: determines whether the data (and codebook) should be
   #     downloaded, use false if you have previously downloaded the data
   #
@@ -20,27 +15,22 @@ ReadFromUrlToDataTable <- function(fileDataUrl,
   library(data.table)
   source("reading_data/utilities.R")
 
+  # The American Community Survey distributes downloadable data about United
+  # States communities. Download the 2006 microdata survey about housing for the
+  # state of Idaho
+  fileDataUrl <- paste("https://d396qusza40orc.cloudfront.net/",
+                       "getdata%2Fdata%2Fss06pid.csv",
+                       sep="")
+  fileDataDest <- "getdata-data-restaurants.xml"
   fileDataDest <- DownloadDataFromUrl(fileDataUrl, fileDataDest, downloadData)
 
-  dt <- fread(fileDataDest)
+  dtHousing <- fread(fileDataDest)
 
   # Calculate the average value of the variable pwgtp15 broken down by sex
   # using the data.table package
   # From the codebook:
   # PWGTP15 Person's Weight replicate 15
   # 0001..9999 .Integer weight of person
-  meanPwgtp15 <- sapply(split(dt$pwgtp15, dt$SEX), mean)
+  meanPwgtp15 <- sapply(split(dtHousing$pwgtp15, dtHousing$SEX), mean)
   return(meanPwgtp15)
 }
-
-# Tests
-# The American Community Survey distributes downloadable data about United
-# States communities. Download the 2006 microdata survey about housing for the
-# state of Idaho
-fileDataUrl <- paste("https://d396qusza40orc.cloudfront.net/",
-                     "getdata%2Fdata%2Fss06pid.csv",
-                     sep="")
-fileDataDest <- "getdata-data-restaurants.xml"
-ReadFromUrlToDataTable(fileDataUrl, fileDataDest)
-# 1        2
-# 99.80667 96.66534

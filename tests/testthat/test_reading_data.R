@@ -75,3 +75,10 @@ test_that("data on number of baltimore restaurants by zip is read from xml", {
   baseline <- 32
   expect_equal(result[1], baseline)
 })
+
+test_that("data on mean person weight replicate 15 is read from data table", {
+  result <- MeanPersonWeightReplicate15Idaho(DownloadData())
+  baseline <- c(99.80667, 96.66534)
+  names(baseline) <- c("1", "2")
+  expect_equal(result, baseline, 10)
+})
