@@ -26,7 +26,7 @@ NumBaltimoreRestaurantsInZip <- function(zip, downloadData=TRUE) {
   doc <- xmlTreeParse(fileDataDest, useInternal=TRUE)
   rootNode <- xmlRoot(doc)
 
-  # generate the XPATH expression to filter "zipcode" xml elements that have
+  # Generate the XPATH expression to filter "zipcode" xml elements that have
   # the given zipcode value
   expression <- paste("//row/zipcode[text()=",
                       zip,
@@ -37,8 +37,3 @@ NumBaltimoreRestaurantsInZip <- function(zip, downloadData=TRUE) {
   nodes <- getNodeSet(rootNode, expression)
   return(length(nodes))
 }
-
-# Tests
-# Read the XML data on Baltimore restaurants:
-
-# [1] 32
