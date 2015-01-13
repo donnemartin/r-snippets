@@ -1,7 +1,9 @@
+# Run with devtools::test()
 context("Reading Data")
 
 setwd("../../")
 source("reading_data/utilities.R")
+sourceDir("reading_data/")
 
 GetDataDir <- function() {
   # Returns the data directory file path.
@@ -11,6 +13,7 @@ GetDataDir <- function() {
   #
   # Returns:
   #   The data directory file path
+
   return("data/")
 }
 
@@ -26,6 +29,7 @@ DownloadData <- function() {
   #   FALSE: Do not download the data files, use the already existing data file
   #     if it exists.  Note: Does not check whether existing data file already
   #     exists.
+
   return(TRUE)
 }
 

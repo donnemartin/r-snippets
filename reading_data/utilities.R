@@ -37,3 +37,17 @@ SetupDataDir <- function(dataDir) {
     dir.create(dataDir)
   }
 }
+
+sourceDir <- function(path, ...) {
+  # Sources files in specified path
+  #
+  # Args:
+  #   path: the path to source from
+  #
+  # Returns:
+  #   None
+
+  for (fileName in list.files(path, pattern="[.][RrSsQq]$")) {
+    source(file.path(path, fileName), ...)
+  }
+}
