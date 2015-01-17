@@ -86,3 +86,9 @@ test_that("data on mean person weight replicate 15 is read from data table", {
   names(baseline) <- c("1", "2")
   expect_equal(result, baseline, 10)
 })
+
+test_that("data on r-snippets creation date is read from json", {
+  result <- RSnippetsCreatedAt()
+  baseline <- "2015-01-09T18:24:19Z"
+  expect_equal(result, baseline)
+})
