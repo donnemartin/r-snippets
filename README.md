@@ -10,6 +10,7 @@ Snippets operate on real world data and are covered by test_that unit tests.
 * Read from URL to Data Table
 * Read XLSX from URL
 * Read XML from URL with XPATH
+* Read JSON from URL
 
 ## Subsetting Data
 
