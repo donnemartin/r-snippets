@@ -1,8 +1,7 @@
 NumBaltimoreRestaurantsInZip <- function(zip, downloadData=TRUE) {
-  # Downloads an xml file from the given url and saves it to the given
-  # destination.  Reads the downloaded file with xmlTreeParse and uses XPATH
+  # Downloads an xml file from the Baltimore restaurants data set.
+  # Reads the downloaded file with xmlTreeParse and uses XPATH
   # to filter values.
-  #
   # Returns the number of Baltimore restaurants in the given zip.
   #
   # Args:
