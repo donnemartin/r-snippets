@@ -1,10 +1,7 @@
-ListGasContractorsCityZip <- function(downloadData) {
-  # Downloads an xlsx file from the given url and saves it to the given
-  # destination.  Reads selected rows and columns from the downloaded file
-  # to a data frame.
-  #
-  # Returns the contractor city and zip from xlsx data on the Natural Gas
-  # Aquisition Program.
+ListGasContractorsCityZip <- function(downloadData=TRUE) {
+  # Downloads an xlsx file from the the Natural Gas Aquisition Program.
+  # Reads selected rows and columns from the downloaded file to a data frame.
+  # Returns the contractor city and zip.
   #
   # Args:
   #   downloadData: determines whether the data should be
