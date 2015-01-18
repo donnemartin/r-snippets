@@ -1,9 +1,7 @@
-NumMillionDollarHomesIdaho <- function(downloadData) {
-  # Downloads a csv file from the given url and saves it to the given
-  # destination.  Reads the downloaded file to a data frame.
-  #
-  # Returns the number of million dollar homes in Idaho based on
-  # The American Community Survey's 2006 microdata on Idaho.
+NumMillionDollarHomesIdaho <- function(downloadData=TRUE) {
+  # Downloads a csv file from the The American Community Survey's 2006 microdata
+  # survey about housing for Idaho and reads the file to a data frame.
+  # Returns the number of million dollar homes.
   #
   # Args:
   #   downloadData: determines whether the data (and codebook) should be
