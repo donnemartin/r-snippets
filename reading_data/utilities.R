@@ -10,7 +10,8 @@ DownloadDataFromUrl <- function(fileDataUrl, fileDataDest, downloadData=TRUE) {
   #     downloaded, use false if you have previously downloaded the data
   #
   # Returns:
-  #   The file data destination path in the data directory
+  #   A character vector representing the file data destination path in
+  #   the data directory
 
   dataDir <- "data/"
   SetupDataDir(dataDir)
