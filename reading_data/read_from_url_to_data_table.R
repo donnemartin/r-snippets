@@ -1,9 +1,7 @@
 MeanPersonWeightReplicate15Idaho <- function(downloadData=TRUE) {
-  # Downloads a file from the given url and reads the file to a data table.
-  #
-  # Returns the mean person weight replicate 15 segmented by sex from the
-  # The American Community Survey's 2006 microdata survey about housing for
-  # Idaho
+  # Downloads a file from The American Community Survey's 2006 microdata survey
+  # about housing for Idaho and reads the file to a data table.
+  # Returns the mean person weight replicate 15 segmented by sex.
   #
   # Args:
   #   downloadData: determines whether the data (and codebook) should be
