@@ -57,7 +57,7 @@ test_that("data is downloaded from URL", {
 test_that("data on number of million dollar homes is read from csv", {
   result <- NumMillionDollarHomesIdaho(DownloadData())
   baseline <- 53
-  expect_equal(result[1], baseline)
+  expect_equal(result, baseline)
 })
 
 test_that("data on gas contractor city and zip is read from xlsx", {
@@ -77,7 +77,7 @@ test_that("data on gas contractor city and zip is read from xlsx", {
 test_that("data on number of baltimore restaurants by zip is read from xml", {
   result <- NumBaltimoreRestaurantsInZip(21217, DownloadData())
   baseline <- 32
-  expect_equal(result[1], baseline)
+  expect_equal(result, baseline)
 })
 
 test_that("data on mean person weight replicate 15 is read from data table", {
