@@ -109,5 +109,11 @@ test_that("data on mean person weight replicate 1 is read using sqldf", {
   expect_equal(result, baseline, 10)
 })
 
+test_that("data on sum of chars on personal website is read using readLines", {
+  result <- SumCharsPersonalWebsite()
+  baseline <- 153956
+  expect_equal(result, baseline, 10)
+})
+
 # Restore the previous working directory
 setwd(prevWorkingDir)
