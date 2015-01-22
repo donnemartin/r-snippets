@@ -103,5 +103,11 @@ test_that("data on r-snippets creation date is read from json", {
   expect_equal(result, baseline)
 })
 
+test_that("data on mean person weight replicate 1 is read using sqldf", {
+  result <- MeanProbabilityWeightBelowAge50(DownloadData())
+  baseline <- 103.8886
+  expect_equal(result, baseline, 10)
+})
+
 # Restore the previous working directory
 setwd(prevWorkingDir)
