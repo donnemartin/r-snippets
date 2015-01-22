@@ -1,6 +1,16 @@
 # Run with devtools::test()
 context("Reading Data")
 
+# test_that does a good job ensuring that each test is run in its own
+# environment and is self-contained.
+#
+# The test_that documentation lists the following as an exception:
+# The filesystem: creating and deleting files, changing the working directory
+#
+# Because we are using data files and setting a new working directory, we must
+# save the current working directory here and restore it at the end of our
+# tests.
+prevWorkingDir <- getwd()
 setwd("../../")
 source("reading_data/utilities.R")
 sourceDir("reading_data/")
@@ -92,3 +102,6 @@ test_that("data on r-snippets creation date is read from json", {
   baseline <- "2015-01-09T18:24:19Z"
   expect_equal(result, baseline)
 })
+
+# Restore the previous working directory
+setwd(prevWorkingDir)
