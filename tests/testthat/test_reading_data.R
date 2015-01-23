@@ -94,7 +94,8 @@ test_that("data on mean person weight replicate 15 is read from data table", {
   result <- MeanPersonWeightReplicate15Idaho(DownloadData())
   baseline <- c(99.80667, 96.66534)
   names(baseline) <- c("1", "2")
-  expect_equal(result, baseline, 10)
+  tolerance <- 10
+  expect_equal(result, baseline, tolerance)
 })
 
 test_that("data on r-snippets creation date is read from json", {
@@ -106,13 +107,15 @@ test_that("data on r-snippets creation date is read from json", {
 test_that("data on mean person weight replicate 1 is read using sqldf", {
   result <- MeanProbabilityWeightBelowAge50(DownloadData())
   baseline <- 103.8886
-  expect_equal(result, baseline, 10)
+  tolerance <- 10
+  expect_equal(result, baseline, tolerance)
 })
 
 test_that("data on sum of chars on personal website is read using readLines", {
   result <- SumCharsPersonalWebsite()
   baseline <- 153956
-  expect_equal(result, baseline, 10)
+  tolerance <- 10
+  expect_equal(result, baseline, tolerance)
 })
 
 # Restore the previous working directory
